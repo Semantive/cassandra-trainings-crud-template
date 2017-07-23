@@ -1,0 +1,56 @@
+#
+# Keyspace 
+#
+keyspace: songbrowser
+keyspace_definition: |
+  CREATE KEYSPACE IF NOT EXISTS songbrowser WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
+
+#
+# Table name and create CQL
+#
+table: songs_by_artists
+table_definition: |
+  CREATE TABLE IF NOT EXISTS songs_by_artists (
+    album_title    VARCHAR,
+    artist         VARCHAR,
+    genre          VARCHAR,
+    performers     LIST<VARCHAR>,
+    release_year   INT,
+    song_title     VARCHAR,
+    track_no       INT,
+    PRIMARY KEY ((artist), release_year, album_title, track_no)
+  ); 
+
+#
+# Meta information for generating data
+#  name: column name
+#  size: length 
+#  population: type of population, eg:
+#    uniform(1..n) - n different values, equally probable
+#    gaussian(1..n) - n different values, bell curve probability
+#
+columnspec:
+  - name: release_year
+    population: uniform(1950..2010)    
+  - name: album_title
+    size: fixed(32) 
+    population: uniform(1..50)
+  - name: track_no
+    population: gaussian(6..16) 
+
+#
+# INSERT queries
+#
+insert:
+  batchtype: UNLOGGED       # use unlogged batches
+ 
+#
+# SELECT queries
+#
+queries:
+   by-artist:
+      cql: SELECT * FROM songs_by_artists WHERE artist = ? 
+      fields: multirow
+   by-album:
+      cql: SELECT * FROM songs_by_artists WHERE artist = ? AND release_year = ? AND album_title = ?
+      fields: multirow

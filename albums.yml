@@ -1,0 +1,53 @@
+#
+# Keyspace 
+#
+keyspace: songbrowser
+keyspace_definition: |
+  CREATE KEYSPACE IF NOT EXISTS songbrowser WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
+
+#
+# Table name and create CQL
+#
+table: albums
+table_definition: |
+  CREATE TABLE IF NOT EXISTS albums (
+    album_title    VARCHAR,
+    artist         VARCHAR,
+    genre          VARCHAR,
+    producer       VARCHAR,
+    record_label   VARCHAR,
+    release_year   INT,
+    PRIMARY KEY ((artist), release_year, album_title)
+  ); 
+
+#
+# Meta information for generating data
+#  name: column name
+#  size: length 
+#  population: type of population, eg:
+#    uniform(1..n) - n different values, equally probable
+#    gaussian(1..n) - n different values, bell curve probability
+#
+columnspec:
+  - name: release_year
+    population: uniform(1950..2010)    
+  - name: album_title
+    size: fixed(32) 
+    population: uniform(1..50)
+ 
+#
+# INSERT queries
+#
+insert:
+  batchtype: UNLOGGED       # use unlogged batches
+ 
+#
+# SELECT queries
+#
+queries:
+   single-album:
+      cql: SELECT * FROM albums WHERE artist = ? AND release_year = ? AND album_title = ?
+      fields: samerow
+   multi-album:
+      cql: SELECT * FROM albums WHERE artist = ?
+      fields: multirow
