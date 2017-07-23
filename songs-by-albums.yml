@@ -8,9 +8,9 @@ keyspace_definition: |
 #
 # Table name and create CQL
 #
-table: songs_by_artists
+table: songs_by_albums
 table_definition: |
-  CREATE TABLE IF NOT EXISTS songs_by_artists (
+  CREATE TABLE IF NOT EXISTS songs_by_albums (
     album_title    VARCHAR,
     artist         VARCHAR,
     genre          VARCHAR,
