@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS songbrowser.albums (
   PRIMARY KEY ((artist), release_year, album_title)
 );
 
-CREATE TABLE IF NOT EXISTS songbrowser.songs_by_artists (
+CREATE TABLE IF NOT EXISTS songbrowser.songs_by_albums (
   album_title    VARCHAR,
   artist         VARCHAR,
   genre          VARCHAR,
