@@ -2,7 +2,9 @@ package models;
 
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
+import com.datastax.driver.mapping.annotations.Table;
 
+@Table(keyspace = "songbrowser", name = "albums")
 public class Album {
 
     @PartitionKey
@@ -15,8 +17,13 @@ public class Album {
     @Column(name = "album_title")
     private String albumTitle;
 
+    @Column(name = "genre")
     private String genre;
+
+    @Column(name = "producer")
     private String producer;
+
+    @Column(name = "record_label")
     private String recordLabel;
 
     public Album(String artist, Integer releaseYear, String albumTitle, String genre, String producer, String recordLabel) {
