@@ -4,7 +4,7 @@ import com.datastax.driver.mapping.annotations.Column;
 
 import java.util.List;
 
-abstract public class Song {
+public class Song {
 
     @Column(name = "album_title")
     private String albumTitle;
@@ -27,6 +27,18 @@ abstract public class Song {
     @Column(name = "track_no")
     private Integer trackNo;
 
+    public Song() {
+    }
+
+    public Song(String albumTitle, String artist, String genre, List<String> performers, Integer releaseYear, String songTitle, Integer trackNo) {
+        this.albumTitle = albumTitle;
+        this.artist = artist;
+        this.genre = genre;
+        this.performers = performers;
+        this.releaseYear = releaseYear;
+        this.songTitle = songTitle;
+        this.trackNo = trackNo;
+    }
 
     public String getAlbumTitle() {
         return albumTitle;

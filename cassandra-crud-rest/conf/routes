@@ -2,8 +2,9 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /albums/:artist                     controllers.RestController.getAlbumsByArtist(artist: String)
+GET     /songs/:artist                      controllers.RestController.getSongsByArtist(artist: String)
+GET     /songs/:releaseYear/:albumTitle     controllers.RestController.getSongsByAlbum(releaseYear: Int, albumTitle: String)
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+POST    /album                              controllers.RestController.saveAlbum
+POST    /song                               controllers.RestController.saveSong

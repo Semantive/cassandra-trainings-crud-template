@@ -26,6 +26,9 @@ public class Album {
     @Column(name = "record_label")
     private String recordLabel;
 
+    public Album() {
+    }
+
     public Album(String artist, Integer releaseYear, String albumTitle, String genre, String producer, String recordLabel) {
         this.artist = artist;
         this.releaseYear = releaseYear;
