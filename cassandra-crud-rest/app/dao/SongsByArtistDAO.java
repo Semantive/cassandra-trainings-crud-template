@@ -39,7 +39,7 @@ public class SongsByArtistDAO {
     }
 
     public SongsPage paginateSongs(final String artist, final String requestedPage) {
-        Statement st = new SimpleStatement("SELECT * FROM songs_by_artists WHERE artist = '" + artist + "'");
+        Statement st = new SimpleStatement("SELECT * FROM songs_by_artists WHERE artist = ?", artist);
         st.setFetchSize(paginateSongsPageSize);
 
         if (requestedPage != null && !requestedPage.isEmpty()) {
