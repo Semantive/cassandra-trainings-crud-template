@@ -4,12 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import dao.AlbumsDAO;
 import dao.SongsByAlbumDAO;
 import dao.SongsByArtistDAO;
-import models.Album;
-import models.Song;
-import models.SongByAlbum;
-import models.SongByArtist;
+import models.*;
 import play.libs.Json;
-import play.mvc.*;
+import play.mvc.Controller;
+import play.mvc.Result;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -37,9 +35,21 @@ public class RestController extends Controller {
         return ok(albumsAsJson);
     }
 
+    public Result searchAlbumsByTitle(final String pattern) {
+        final List<Album> albums = albumsDAO.searchAlbumsByTitle(pattern);
+        final JsonNode albumsAsJson = Json.toJson(albums);
+        return ok(albumsAsJson);
+    }
+
     public Result getSongsByArtist(final String artist) {
         final List<Song> songs = songsByArtistDAO.getSongs(artist);
         final JsonNode songsAsJson = Json.toJson(songs);
+        return ok(songsAsJson);
+    }
+
+    public Result paginateSongsByArtist(final String artist, final String page) {
+        final SongsPage songsPage = songsByArtistDAO.paginateSongs(artist, page);
+        final JsonNode songsAsJson = Json.toJson(songsPage);
         return ok(songsAsJson);
     }
 

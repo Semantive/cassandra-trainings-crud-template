@@ -21,7 +21,7 @@ public class Album {
     private String genre;
 
     @Column(name = "producer")
-    private String producer;
+    private Producer producer;
 
     @Column(name = "record_label")
     private String recordLabel;
@@ -29,7 +29,7 @@ public class Album {
     public Album() {
     }
 
-    public Album(String artist, Integer releaseYear, String albumTitle, String genre, String producer, String recordLabel) {
+    public Album(String artist, Integer releaseYear, String albumTitle, String genre, Producer producer, String recordLabel) {
         this.artist = artist;
         this.releaseYear = releaseYear;
         this.albumTitle = albumTitle;
@@ -74,11 +74,11 @@ public class Album {
         return this;
     }
 
-    public String getProducer() {
+    public Producer getProducer() {
         return producer;
     }
 
-    public Album setProducer(String producer) {
+    public Album setProducer(Producer producer) {
         this.producer = producer;
         return this;
     }

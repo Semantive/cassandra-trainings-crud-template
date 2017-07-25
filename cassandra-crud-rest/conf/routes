@@ -3,7 +3,9 @@
 # ~~~~
 
 GET     /albums/:artist                     controllers.RestController.getAlbumsByArtist(artist: String)
+GET     /albums/search/:title               controllers.RestController.searchAlbumsByTitle(title: String)
 GET     /songs/:artist                      controllers.RestController.getSongsByArtist(artist: String)
+GET     /songs/paginate/:artist             controllers.RestController.paginateSongsByArtist(artist: String, page: String ?= null)
 GET     /songs/:releaseYear/:albumTitle     controllers.RestController.getSongsByAlbum(releaseYear: Int, albumTitle: String)
 
 POST    /album                              controllers.RestController.saveAlbum
