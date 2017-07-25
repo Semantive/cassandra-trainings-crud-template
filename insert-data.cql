@@ -2,13 +2,13 @@ USE songbrowser;
 
 /** Albums */
 INSERT INTO albums (artist, release_year, album_title, genre, record_label, producer)
-VALUES ('Red Hot Chili Peppers', 2002, 'By the Way', 'Funk', 'WMG', 'Warner Music GrouXp');
+VALUES ('Red Hot Chili Peppers', 2002, 'By the Way', 'Funk', 'WMG', {name: 'Warner Music GrouXp', country_code: 'us'});
 
 INSERT INTO albums (artist, release_year, album_title, genre, record_label, producer)
-VALUES ('System of a Down', 2005, 'Hypnotize', 'Hard rock', 'American', 'American Records');
+VALUES ('System of a Down', 2005, 'Hypnotize', 'Hard rock', 'American', {name: 'American Records', country_code: 'us'});
 
 INSERT INTO albums (artist, release_year, album_title, genre, record_label, producer)
-VALUES ('System of a Down', 2005, 'Mezmerize', 'Hard rock', 'American', 'American Records');
+VALUES ('System of a Down', 2005, 'Mezmerize', 'Hard rock', 'American', {name: 'American Records', country_code: 'us'});
 
 /** Songs by album */
 INSERT INTO songs_by_albums (release_year, album_title, track_no, artist, genre, performers, song_title)
