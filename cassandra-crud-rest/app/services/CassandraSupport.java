@@ -5,7 +5,6 @@ import com.datastax.driver.core.Session;
 import com.datastax.driver.core.policies.ConstantReconnectionPolicy;
 import com.datastax.driver.mapping.Mapper;
 import com.datastax.driver.mapping.MappingManager;
-import dao.SongsByArtistDAO;
 import models.Album;
 import models.AlbumAccessor;
 import models.SongByAlbum;
@@ -32,10 +31,8 @@ public class CassandraSupport {
         session = cluster.connect("songbrowser");
         MappingManager manager = new MappingManager(session);
 
-        // FixMe: create appropriate mappers
-        albumMapper = null;
-        songByAlbumMapper = null;
-
+        albumMapper = manager.mapper(Album.class);
+        songByAlbumMapper = manager.mapper(SongByAlbum.class);
         songByArtistMapper = manager.mapper(SongByArtist.class);
         albumAccessor = manager.createAccessor(AlbumAccessor.class);
     }

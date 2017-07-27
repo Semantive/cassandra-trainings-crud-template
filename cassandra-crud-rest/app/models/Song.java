@@ -5,26 +5,12 @@ import com.datastax.driver.mapping.annotations.Column;
 import java.util.List;
 
 public class Song {
-
-    @Column(name = "album_title")
     private String albumTitle;
-
-    @Column(name = "artist")
     private String artist;
-
-    @Column(name = "genre")
     private String genre;
-
-    @Column(name = "performers")
     private List<String> performers;
-
-    @Column(name = "release_year")
     private Integer releaseYear;
-
-    @Column(name = "song_title")
     private String songTitle;
-
-    @Column(name = "track_no")
     private Integer trackNo;
 
     public Song() {
@@ -40,6 +26,7 @@ public class Song {
         this.trackNo = trackNo;
     }
 
+    @Column(name = "album_title")
     public String getAlbumTitle() {
         return albumTitle;
     }
@@ -49,6 +36,7 @@ public class Song {
         return this;
     }
 
+    @Column(name = "artist")
     public String getArtist() {
         return artist;
     }
@@ -58,6 +46,7 @@ public class Song {
         return this;
     }
 
+    @Column(name = "genre")
     public String getGenre() {
         return genre;
     }
@@ -67,6 +56,7 @@ public class Song {
         return this;
     }
 
+    @Column(name = "performers")
     public List<String> getPerformers() {
         return performers;
     }
@@ -76,6 +66,7 @@ public class Song {
         return this;
     }
 
+    @Column(name = "release_year")
     public Integer getReleaseYear() {
         return releaseYear;
     }
@@ -85,6 +76,7 @@ public class Song {
         return this;
     }
 
+    @Column(name = "song_title")
     public String getSongTitle() {
         return songTitle;
     }
@@ -94,6 +86,7 @@ public class Song {
         return this;
     }
 
+    @Column(name = "track_no")
     public Integer getTrackNo() {
         return trackNo;
     }

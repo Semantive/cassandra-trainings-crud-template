@@ -1,5 +1,6 @@
 package models;
 
+import com.datastax.driver.mapping.annotations.ClusteringColumn;
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
@@ -11,9 +12,11 @@ public class Album {
     @Column(name = "artist")
     private String artist;
 
+    @ClusteringColumn(0)
     @Column(name = "release_year")
     private Integer releaseYear;
 
+    @ClusteringColumn(1)
     @Column(name = "album_title")
     private String albumTitle;
 

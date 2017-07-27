@@ -1,5 +1,7 @@
 package models;
 
+import com.datastax.driver.mapping.annotations.ClusteringColumn;
+import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
 
@@ -9,15 +11,21 @@ import java.util.List;
 public class SongByAlbum extends Song {
 
     @Override
-    @PartitionKey
+    @PartitionKey(0)
+    public Integer getReleaseYear() {
+        return super.getReleaseYear();
+    }
+
+    @Override
+    @PartitionKey(1)
     public String getAlbumTitle() {
         return super.getAlbumTitle();
     }
 
     @Override
-    @PartitionKey
-    public Integer getReleaseYear() {
-        return super.getReleaseYear();
+    @ClusteringColumn
+    public Integer getTrackNo() {
+        return super.getTrackNo();
     }
 
     public SongByAlbum() {
