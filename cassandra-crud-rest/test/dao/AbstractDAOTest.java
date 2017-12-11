@@ -15,8 +15,6 @@ abstract public class AbstractDAOTest {
             final CQLDataLoader dataLoader = new CQLDataLoader(EmbeddedCassandraServerHelper.getSession());
             dataLoader.load(dataSet);
 
-            Thread.sleep(5000);
-
         } catch(Exception e) {
             throw new RuntimeException("Failed to initialize tests", e);
         }
