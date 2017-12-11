@@ -17,10 +17,13 @@ This exercise is meant to practice usage of Datastax' Cassandra Driver for Java,
 Next, run application as-is, without any changes in the source code:
 
 ### Running application on default port
-Run `sbt run` inside `cassandra-crud-rest` directory
+Run `sbt run` inside `cassandra-crud-rest` directory.
 
 ### Running application on custom port XYZ
-Run `sbt -Dhttp.port=XYZ run` inside `cassandra-crud-rest` directory
+Run `sbt -Dhttp.port=XYZ run` inside `cassandra-crud-rest` directory.
+
+### Running tests (on default port only)
+Run `sbt test` inside inside `cassandra-crud-rest` directory. Make sure you do not have any application listening on port 9000 (including other Cassandra instances).
 
 ### Exploring GET endpoints 
 Try querying following endpoints to see how the application behaves (remember to use appropriate port!). Word beginning with colon (`:`) should be substituted with a value. Use internet browser as a client:
@@ -39,5 +42,7 @@ Try querying following endpoints to see how the application behaves (remember to
 1. Ensure you know how the application works.
 2. Fill in `CassandraSupport` class to add missing Mappers.
 3. Fill in `getXYZ` and `saveXYZ` methods in all classes in DAO classes.
+4. Take a look at sample tests suite (AlbumsDAOTest).
+5. Fill in gaps in `SongsByAlbumDAOTest` and `SongsByArtistDAOTest`.
  
-You can verify your results using `cqlsh` or `DevCenter` tool.
+You can verify your results using the tests. For debugging consider using `cqlsh` or `DevCenter` tool.
