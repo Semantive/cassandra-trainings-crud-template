@@ -10,9 +10,7 @@ import models.AlbumAccessor;
 import models.SongByAlbum;
 import models.SongByArtist;
 
-import javax.inject.Singleton;
 
-@Singleton
 public class CassandraSupport {
     private final Cluster cluster;
     private final Session session;
@@ -22,13 +20,16 @@ public class CassandraSupport {
     private final Mapper<SongByArtist> songByArtistMapper;
     private final AlbumAccessor albumAccessor;
 
-    public CassandraSupport() {
+    CassandraSupport() {
+        final String initialHost = loadEnv("CASSANDRA_HOST", "127.0.0.1");
+        final String keyspace = loadEnv("CASSANDRA_KEYSPACE", "songbrowser");
+
         cluster = Cluster.builder()
-                .addContactPoint("127.0.0.1")
+                .addContactPoint(initialHost)
                 .withReconnectionPolicy(new ConstantReconnectionPolicy(200))
                 .build();
 
-        session = cluster.connect("songbrowser");
+        session = cluster.connect(keyspace);
         MappingManager manager = new MappingManager(session);
 
         albumMapper = manager.mapper(Album.class);
@@ -63,5 +64,14 @@ public class CassandraSupport {
 
     public void close() {
         cluster.close();
+    }
+
+    private String loadEnv(final String envName, final String defaultValue) {
+        final String valueOrNull = System.getenv(envName);
+
+        if(valueOrNull == null)
+            return defaultValue;
+        else
+            return valueOrNull;
     }
 }
