@@ -20,7 +20,7 @@ public class CassandraSupport {
     private final Mapper<SongByArtist> songByArtistMapper;
     private final AlbumAccessor albumAccessor;
 
-    CassandraSupport() {
+    public CassandraSupport() {
         final String initialHost = loadEnv("CASSANDRA_HOST", "127.0.0.1");
         final String keyspace = loadEnv("CASSANDRA_KEYSPACE", "songbrowser");
 
